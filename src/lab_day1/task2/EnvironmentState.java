@@ -6,12 +6,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class EnvironmentState {
-	private Map<String, LocationState> state = new HashMap<String, LocationState>();
+	private Map<String, LocationState> state = new HashMap<>();
 	private String agentLocation = null;//
 
-	public EnvironmentState(LocationState locAState, LocationState locBState) {
+	public EnvironmentState(LocationState locAState, LocationState locBState, LocationState locCState, LocationState locDState) {
 		this.state.put(Environment.LOCATION_A, locAState);
 		this.state.put(Environment.LOCATION_B, locBState);
+		this.state.put(Environment.LOCATION_C, locCState);
+		this.state.put(Environment.LOCATION_D, locDState);
 	}
 
 	public void setAgentLocation(String location) {
@@ -32,5 +34,9 @@ public class EnvironmentState {
 
 	public void display() {
 		System.out.println("Environment state: \n\t" + this.state);
+	}
+
+	public void displayAfterAction() {
+		System.out.println("Environment state after action: \n\t" + this.state);
 	}
 }
