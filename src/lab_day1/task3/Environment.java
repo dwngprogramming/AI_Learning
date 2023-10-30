@@ -75,10 +75,14 @@ public class Environment {
     }
 
     // add an agent into the environment
-    public void addAgent(Agent agent, Location location) {
+    public void addAgent(Agent agent, int row, int col) {
         // TODO
         this.agent = agent;
-        envState.setAgentLocation(location);
+        for (Map.Entry<Location, LocationState> entry : envState.getMap().entrySet()) {
+            if (entry.getKey().getRowLocation() == row && entry.getKey().getColLocation() == col) {
+                envState.setAgentLocation(entry.getKey());
+            }
+        }
     }
 
     public EnvironmentState getCurrentState() {
@@ -247,7 +251,7 @@ public class Environment {
         Percept percept = null;
         Location agentLocation = envState.getAgentLocation();
         // return Percept of Agent (it means Agent know where it located and state of this location).
-        percept =  new Percept(agentLocation, envState.getLocationState(agentLocation));
+        percept = new Percept(agentLocation, envState.getLocationState(agentLocation));
         return percept;
     }
 
